@@ -11,8 +11,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(User user) {
-        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()) != null;
+    public boolean login(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password) != null;
     }
 
     public User post(User user) {

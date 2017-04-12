@@ -7,4 +7,9 @@ export const routes =
       url: '/home',
       component: 'allflights'
     })
+    .state({
+      name: 'login',
+      url: '/login',
+      component: 'credentials'
+    })
   }

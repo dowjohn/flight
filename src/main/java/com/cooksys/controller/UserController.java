@@ -15,11 +15,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public boolean login(@RequestBody User user, HttpServletResponse httpResponse) {
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public boolean login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse httpResponse) {
         httpResponse.setStatus(HttpServletResponse.SC_OK);
-        return userService.login(user);
+        return userService.login(username, password);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")

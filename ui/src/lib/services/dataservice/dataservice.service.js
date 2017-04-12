@@ -7,30 +7,29 @@ export const dataservice = class {
   getFlights () {
     return this.$http.get(`http://${this.ipAddress}/flights`)
     .then((response) => {
-      // console.log('success getFlights', response.data)
       return response.data
     }, (error) => {
-      // console.log('failed getFlights', error.data)
+      console.log('failed getFlights', error.data)
     })
   }
 
-  // doesTagExist (tag) {
-  //   return this.$http.get(`http://${this.ipAddress}/api/validate/tag/exists/${tag}`)
-  //   .then((response) => {
-  //     console.log('success doesTagExist', response.data)
-  //     return response.data
-  //   }, (error) => {
-  //     console.log('failed doesTagExist', error.data)
-  //   })
-  // }
-
-  login (user) {
-    return this.$http.post(`http://${this.ipAddress}/login`, user)
+  login (credentials) {
+    return this.$http.get(`http://${this.ipAddress}/user/login?username=${credentials.username}&password=${credentials.password}`)
     .then((response) => {
       console.log('success login', response.data)
       return response.data
     }, (error) => {
       console.log('failed login', error.data)
+    })
+  }
+
+  createUser (user) {
+    return this.$http.post(`http://${this.ipAddress}/user/create`, user)
+    .then((response) => {
+      console.log('success user created', response.data)
+      return response.data
+    }, (error) => {
+      console.log('failed user created', error.data)
     })
   }
 }

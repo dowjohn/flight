@@ -12,6 +12,10 @@ import { mappy } from 'components/mappy'
 import { allflights } from 'components/allflights'
 import { bookFlight } from 'components/book-flight'
 
+import { credentials} from 'components/credentials'
+import { login } from 'components/login'
+import { createUser } from 'components/create-user'
+
 
 
 import { dataservice } from 'services/dataservice'
@@ -40,6 +44,11 @@ export default
     .component('mappy', mappy)
     .component('direct', direct)
     .component('bookFlight', bookFlight)
+
+    .component('credentials', credentials)
+    .component('login', login)
+    .component('createUser', createUser)
+
     .service('dataservice', dataservice)
     .service('userstatusservice', userstatusservice)
     .service('mapservice', mapservice)

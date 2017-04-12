@@ -8,7 +8,7 @@ export const flightsmanagerservice = class {
   }
 
   getUsers () {
-   return this.$http.get(`http://${this.ipAddress}/api/users`)
+   return this.$http.get(`http://${this.ipAddress}/users`)
    .then((response) => {
      console.log('success getUsers', response.data)
      return response.data
