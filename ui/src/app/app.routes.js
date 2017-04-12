@@ -12,4 +12,10 @@ export const routes =
       url: '/login',
       component: 'credentials'
     })
+    // .state({
+    //   name: 'history',
+    //   url: '/history',
+    //   component: 'history'
+    // })
+
   }

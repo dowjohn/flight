@@ -16,7 +16,7 @@ import { credentials} from 'components/credentials'
 import { login } from 'components/login'
 import { createUser } from 'components/create-user'
 
-
+import { navbar } from 'components/navbar'
 
 import { dataservice } from 'services/dataservice'
 import { userstatusservice } from 'services/userstatusservice'
@@ -48,6 +48,8 @@ export default
     .component('credentials', credentials)
     .component('login', login)
     .component('createUser', createUser)
+
+    .component('navbar', navbar)
 
     .service('dataservice', dataservice)
     .service('userstatusservice', userstatusservice)

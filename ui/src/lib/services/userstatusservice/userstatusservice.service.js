@@ -18,5 +18,6 @@ export const userstatusservice = class {
       password: ''
     }
     this.isLoggedIn = false
+    console.log('logged out')
   }
 }

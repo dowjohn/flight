@@ -1,0 +1,20 @@
+<md-toolbar layout="row" class="md-whiteframe-z1" layout-align="space-between center">
+  <div layout="row" layout-align="start center">
+    <h1>Jetset Airlines</h1>
+  </div>
+  <br>
+  <h4>Come Fly with Us</h4>
+
+  <div layout="row" layout-align="end center">
+    <md-button ng-click='navbar.goToHistory()' class="md-raised" aria-label="Learn More" layout-align="end">
+      History
+    </md-button>
+
+    <md-button ng-if='navbar.userstatusservice.isLoggedIn' ng-click='navbar.logOut()' class="md-raised" aria-label="Learn More" layout-align="end center">
+      Log off
+    </md-button>
+    <md-button ng-if='navbar.userstatusservice.isLoggedIn === false' ng-click='navbar.goToLogin()' class="md-raised" aria-label="Learn More" layout-align="end center">
+      Log In
+    </md-button>
+  </div>
+</md-toolbar>
