@@ -4,7 +4,7 @@ export const userstatusservice = class {
       username: '',
       password: ''
     }
-    this.isLoggedIn = false
+    this.isLoggedIn = true
   }
 
   logIn (credentials) {

@@ -5,6 +5,6 @@ export const routes =
     .state({
       name: 'home',
       url: '/home',
-      component: 'mappy'
+      component: 'allflights'
     })
   }

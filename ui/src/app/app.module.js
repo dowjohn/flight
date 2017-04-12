@@ -7,12 +7,17 @@ import ngMessages from 'angular-messages'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngMap'
 
-import { feed } from 'components/feed'
+import { direct } from 'components/direct'
 import { mappy } from 'components/mappy'
+import { allflights } from 'components/allflights'
+import { bookFlight } from 'components/book-flight'
+
+
 
 import { dataservice } from 'services/dataservice'
 import { userstatusservice } from 'services/userstatusservice'
 import { mapservice } from 'services/mapservice'
+import { flightsmanagerservice } from 'services/flightsmanagerservice'
 
 
 import { app } from './app.component'
@@ -31,10 +36,14 @@ export default
       ngMap
     ])
     .component('app', app)
+    .component('allflights', allflights)
     .component('mappy', mappy)
+    .component('direct', direct)
+    .component('bookFlight', bookFlight)
     .service('dataservice', dataservice)
     .service('userstatusservice', userstatusservice)
     .service('mapservice', mapservice)
+    .service('flightsmanagerservice', flightsmanagerservice)
     .config(config)
     .config(routes)
     .run(run)
