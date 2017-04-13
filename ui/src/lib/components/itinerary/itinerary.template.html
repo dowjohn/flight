@@ -1,11 +1,11 @@
-<div ng-repeat='flight in itinerary.flightsmanagerservice.savedItinerary'>
+<div ng-repeat='flight in itinerary.savedItinerary'>
 
 <div>
   {{ flight.origin }} to {{ flight.destination }} @
   {{ flight.offset }}
 </div>
 <div class="">
-  <div ng-if="itinerary.userstatusservice.isLoggedIn === false">
+  <div ng-if="itinerary.userstatusservice.isLoggedI === false">
     <button ng-click="itinerary.goToLogin()" type="button" name="login">Login</button>
   </div>
   <div ng-if="itinerary.userstatusservice.isLoggedIn">

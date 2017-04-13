@@ -34,6 +34,7 @@ export const flightsmanagerservice = class {
       }
       if (flight.origin === origin && flight.destination === destination) {
         takeableFlights.push(flight)
+        console.log('direct flight possible')
         direct = true
       }
     })
@@ -49,47 +50,49 @@ export const flightsmanagerservice = class {
 
   getParents(destination, origin) {
     let route = []
-    this.flights.forEach(flight => {
-      if (flight.destination === destination) {
-        route.unshift(flight)
-        this.flights.forEach(flighty => {
-          if (flighty.destination === flight.origin && this.isAddable(flighty, flight)) {
-            route.unshift(flighty)
-            if (flighty.origin === origin) {
+    for (let h = 0; h < this.flights.length; h++) {
+      if (this.flights[h].destination === destination) {
+        if (route.includes('success')) {
+          break
+        }
+        route.unshift(this.flights[h])
+        for (let i = 0; i < this.flights.length; i++) {
+          if (this.flights[i].destination === this.flights[h].origin && this.isAddable(this.flights[i], this.flights[h])) {
+            route.unshift(this.flights[i])
+            if (this.flights[i].origin === origin) {
               console.log('success')
               route.push('success')
-              return route
+              break
             } else {
-              this.flights.forEach(flightier => {
-                if (flightier.destination === flighty.origin && this.isAddable(flightier, flighty)) {
-                  route.unshift(flightier)
-                  if (flightier.origin === origin) {
+              for (let j = 0; j < this.flights.length; j++) {
+                if (this.flights[j].destination === this.flights[i].origin && this.isAddable(this.flights[j], this.flights[i])) {
+                  route.unshift(this.flights[j])
+                  if (this.flights[j].origin === origin) {
                     console.log('success')
                     route.push('success')
-                    return route
+                    break
                   } else {
-                    this.flights.forEach(flightiest => {
+                    for (let k = 0; k < array.length; k++) {
                       route.unshift(flightiest)
-                      if (flightiest.destination === flightier.origin && this.isAddable(flightiest, flightier)) {
-                        if (flightiest.origin === origin) {
+                      if (this.flights[k].destination === this.flights[k].origin && this.isAddable(this.flights[k], this.flights[k])) {
+                        if (this.flights[k].origin === origin) {
                           console.log('success')
                           route.push('success')
-                          return route
+                          break
                         } else {
                           console.log('we went too deep')
                           route = []
                         }
                       }
-                    })
+                    }
                   }
                 }
-              })
+              }
             }
           }
-        })
+        }
       }
-    })
-
+    }
     return route
   }
 
