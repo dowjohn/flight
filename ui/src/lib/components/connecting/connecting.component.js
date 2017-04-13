@@ -10,7 +10,7 @@ const controller = class {
   }
 
   searchForRoute () {
-    console.log(this.getTravelables(this.destination, this.origin))
+    console.log(this.flightsmanagerservice.getTravelables(this.destination, this.origin))
   }
 }
 
