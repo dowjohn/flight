@@ -1,5 +1,7 @@
+<h2>Flight History</h2>
 <div ng-repeat='route in history.routes'>
-  {{route}}
+  <div ng-repeat='flight in route.flights'>
+    {{ flight.origin }} to {{ flight.destination }} @ {{flight.offset}}
+  </div>
   -------------------------------------------------------------
 </div>
-huehue
