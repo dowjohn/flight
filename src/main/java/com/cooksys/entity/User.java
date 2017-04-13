@@ -1,5 +1,6 @@
 package com.cooksys.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,12 +13,13 @@ public class User {
     @Id
     @GeneratedValue
     private long id;
-
+    
+    @Column(unique = true, nullable = false)
     private String username;
 
     private String password;
 
-    private String bookedFlights;
+//    private ArrayList<BookedRoutes> bookedRoutes;
 
     public User() {
     }
@@ -46,11 +48,4 @@ public class User {
         this.password = password;
     }
 
-    public String getBookedFlights() {
-        return bookedFlights;
-    }
-
-    public void setBookedFlights(String bookedFlights) {
-        this.bookedFlights = bookedFlights;
-    }
 }

@@ -45,7 +45,4 @@ public class Flight {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
-	
-	
-
 }
