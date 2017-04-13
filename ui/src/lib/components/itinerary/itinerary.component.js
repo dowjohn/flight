@@ -5,9 +5,10 @@ const controller = class {
   styles = styles
   savedItinerary
   displayMapBoolean = false
-  constructor (flightsmanagerservice, userstatusservice) {
+  constructor (flightsmanagerservice, userstatusservice, dataservice) {
     this.flightsmanagerservice = flightsmanagerservice
     this.userstatusservice = userstatusservice
+    this.dataservice = dataservice
     this.parseItinerary()
   }
 
@@ -17,6 +18,10 @@ const controller = class {
     } else {
       this.displayMapBoolean = false
     }
+  }
+
+  book () {
+    this.dataservice.bookFlight(this.savedItinerary, this.userstatusservice.credentials.username, this.userstatusservice.credentials.password)
   }
 
   parseItinerary () {
