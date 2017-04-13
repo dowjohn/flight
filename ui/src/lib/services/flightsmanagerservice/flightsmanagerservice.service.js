@@ -7,40 +7,10 @@ export const flightsmanagerservice = class {
     this.$interval = $interval
     this.dataservice = dataservice
     this.startPolling()
-    // this.startPermPolling()
   }
 
-  // startPermPolling () {
-  //   this.$interval(this.getLocationPermutations(), 1000)
-  // }
-
-  // index 0 of each nested array (possibleNextFlights) is the original flight
-  // getLocationPermutations () {
-  //   return () => {
-  //     this.dataservice.getFlights()
-  //     .then((flights) => {
-  //       this.permutations = []
-  //       flights.forEach((flightOrigin) => {
-  //         let possibleNextFlights = []
-  //         flights.forEach((nextFlight) => {
-  //           if (this.isAddable(flightOrigin, nextFlight)) {
-  //             possibleNextFlights.push(nextFlight)
-  //           }
-  //         })
-  //         this.permutations.push(possibleNextFlights)
-  //       })
-  //       console.log(this.permutations)
-  //     })
-  //   }
-  // }
-
   isAddable (firstFlight, secondFlight) {
-    if (firstFlight.destination === secondFlight.origin && (firstFlight.offset + firstFlight.flightTime) < (secondFlight.offset)) {
-      return true
-    }
-    else {
-      return false
-    }
+    return (firstFlight.destination === secondFlight.origin && (firstFlight.offset + firstFlight.flightTime) < (secondFlight.offset))
   }
 
   getTravelables(destination, origin) {
@@ -59,6 +29,7 @@ export const flightsmanagerservice = class {
     if (noPossible) {
       return []
     } else if (direct) {
+      takeableFlights.push('success')
       return takeableFlights
     } else {
       return this.getParentTree(destination, origin)
