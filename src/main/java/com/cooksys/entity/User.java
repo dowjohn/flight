@@ -1,9 +1,12 @@
 package com.cooksys.entity;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +22,8 @@ public class User {
 
     private String password;
 
-//    private ArrayList<BookedRoutes> bookedRoutes;
+    @OneToMany(mappedBy = "author")
+    private ArrayList<Route> bookedRoutes;
 
     public User() {
     }
@@ -47,5 +51,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public ArrayList<Route> getBookedRoutes() {
+		return bookedRoutes;
+	}
+
+	public void setBookedRoutes(ArrayList<Route> bookedRoutes) {
+		this.bookedRoutes = bookedRoutes;
+	}
+    
 
 }

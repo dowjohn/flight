@@ -58,17 +58,9 @@ const controller = class {
 
     innerMarkers.forEach(marker => this.addMarker(marker))
 
-    // add paths manually
-
     const paths = this.makePaths(citiesWithName)
 
     paths.forEach(args => this.addPath(...args))
-
-    // add path from webservice
-    // mapservice.getMarkerByCityName('Chattanooga')
-    //   .then(chattanooga => {
-    //     this.addPath(knoxville, chattanooga, '#FF3388')
-    //   })
   }
 
   makePaths (citiesWithName) {
