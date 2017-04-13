@@ -7,10 +7,11 @@ import ngMessages from 'angular-messages'
 import uiRouter from 'angular-ui-router'
 import ngMap from 'ngMap'
 
-import { direct } from 'components/direct'
-import { mappy } from 'components/mappy'
 import { allflights } from 'components/allflights'
+import { direct } from 'components/direct'
+import { connecting } from 'components/connecting'
 import { bookFlight } from 'components/book-flight'
+import { mappy } from 'components/mappy'
 
 import { credentials} from 'components/credentials'
 import { login } from 'components/login'
@@ -40,13 +41,14 @@ export default
       ngMap
     ])
     .component('app', app)
-    .component('allflights', allflights)
     .component('mappy', mappy)
+    .component('allflights', allflights)
     .component('direct', direct)
+    .component('connecting', connecting)
     .component('bookFlight', bookFlight)
 
-    .component('credentials', credentials)
     .component('login', login)
+    .component('credentials', credentials)
     .component('createUser', createUser)
 
     .component('navbar', navbar)

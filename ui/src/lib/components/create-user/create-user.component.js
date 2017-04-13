@@ -33,7 +33,7 @@ const controller = class {
   createUser () {
     this.dataservice.createUser(this.makeUser())
     .then((response) => {
-      if (response !== null) {
+      if (response !== undefined) {
         console.log('login success')
         this.userstatusservice.logIn(this.makeCredentials())
         this.goToFlights()

@@ -1,5 +1,5 @@
-import styles from './direct.styles'
-import templateUrl from './direct.template'
+import styles from './connecting.styles'
+import templateUrl from './connecting.template'
 
 const controller = class {
   styles = styles
@@ -8,8 +8,8 @@ const controller = class {
   }
 }
 
-export const direct = {
+export const connecting = {
   templateUrl,
   controller,
-  controllerAs: 'direct'
+  controllerAs: 'connecting'
 }

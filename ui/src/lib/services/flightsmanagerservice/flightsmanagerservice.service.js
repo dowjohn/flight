@@ -2,9 +2,31 @@
 export const flightsmanagerservice = class {
   constructor ($interval, dataservice) {
     this.flights = []
+    this.possibleRoutes = []
     this.$interval = $interval
     this.dataservice = dataservice
+    this.startPolling()
+  }
+
+  createRoutes (allFlights) {
+    let allRoutes = []
+    const allFlightsTemp = allFlights
+    allFlights.forEach((flight) => {
+      let newFlightRoutes = []
+      let newRoute = []
+
+      allFlights.forEach((flight) => {
+        if ()
+      })
+    })
+  }
+
+  startPolling () {
     this.$interval(this.checkForChanges(), 1000)
+  }
+
+  stopPolling () {
+    this.$interval.cancel()
   }
 
   getUsers () {
@@ -25,6 +47,7 @@ export const flightsmanagerservice = class {
       .then((flights) => {
         if (this.flights.length === 0) {
           this.flights = flights
+          this.routing = flights
           console.log('flights updated')
         }
         else {
@@ -50,6 +73,7 @@ export const flightsmanagerservice = class {
               || this.flights[4].flightTime !== flights[4].flightTime
             ) {
             this.flights = flights
+            this.routing = flights
             console.log('flights updated')
           }
         }
