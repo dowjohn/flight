@@ -11,6 +11,7 @@ import { allflights } from 'components/allflights'
 import { direct } from 'components/direct'
 import { connecting } from 'components/connecting'
 import { bookFlight } from 'components/book-flight'
+import { itinerary } from 'components/itinerary'
 import { mappy } from 'components/mappy'
 
 import { credentials} from 'components/credentials'
@@ -41,11 +42,12 @@ export default
       ngMap
     ])
     .component('app', app)
-    .component('mappy', mappy)
     .component('allflights', allflights)
     .component('direct', direct)
     .component('connecting', connecting)
     .component('bookFlight', bookFlight)
+    .component('itinerary', itinerary)
+    .component('mappy', mappy)
 
     .component('login', login)
     .component('credentials', credentials)

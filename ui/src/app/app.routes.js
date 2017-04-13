@@ -12,6 +12,11 @@ export const routes =
       url: '/login',
       component: 'credentials'
     })
+    .state({
+      name: 'itinerary',
+      url: '/itinerary',
+      component: 'itinerary'
+    })
     // .state({
     //   name: 'history',
     //   url: '/history',

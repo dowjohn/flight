@@ -5,12 +5,28 @@ const controller = class {
   styles = styles
   origin = ''
   destination = ''
-  constructor (flightsmanagerservice) {
+  constructor (flightsmanagerservice, userstatusservice, $state) {
     this.flightsmanagerservice = flightsmanagerservice
+    this.userstatusservice = userstatusservice
+    this.$state = $state
+  }
+
+  goToItinerary () {
+    this.$state.go('itinerary')
+  }
+
+  goToLogin () {
+    this.$state.go('login')
   }
 
   searchForRoute () {
-    console.log(this.flightsmanagerservice.getTravelables(this.destination, this.origin))
+    const route = this.flightsmanagerservice.setItinerary(this.destination, this.origin)
+    if (this.userstatusservice.isLoggedIn) {
+      this.goToItinerary('itinerary')
+    } else {
+      console.log('log in!')
+      this.goToLogin()
+    }
   }
 }
 

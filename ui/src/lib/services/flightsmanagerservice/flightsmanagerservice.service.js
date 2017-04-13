@@ -2,8 +2,7 @@
 export const flightsmanagerservice = class {
   constructor ($interval, dataservice) {
     this.flights = []
-    this.possibleRoutes = []
-    this.permutations = []
+    this.savedItinerary = []
     this.$interval = $interval
     this.dataservice = dataservice
     this.startPolling()
@@ -11,6 +10,18 @@ export const flightsmanagerservice = class {
 
   isAddable (firstFlight, secondFlight) {
     return (firstFlight.destination === secondFlight.origin && (firstFlight.offset + firstFlight.flightTime) < (secondFlight.offset))
+  }
+
+  setItinerary (destination, origin) {
+    const itin = this.getTravelables(destination, origin)
+    if (itin.includes('success')) {
+      this.savedItinerary = itin
+      console.log(this.savedItinerary)
+      return this.savedItinerary
+    } else {
+      console.log('IT FAILED')
+      return undefined
+    }
   }
 
   getTravelables(destination, origin) {
@@ -32,11 +43,11 @@ export const flightsmanagerservice = class {
       takeableFlights.push('success')
       return takeableFlights
     } else {
-      return this.getParentTree(destination, origin)
+      return this.getParents(destination, origin)
     }
   }
 
-  getParentTree(destination, origin) {
+  getParents(destination, origin) {
     let route = []
     this.flights.forEach(flight => {
       if (flight.destination === destination) {
@@ -78,8 +89,8 @@ export const flightsmanagerservice = class {
         })
       }
     })
-    console.log(route, 'shitty routing')
-    return
+
+    return route
   }
 
   startPolling () {
@@ -97,7 +108,6 @@ export const flightsmanagerservice = class {
       .then((flights) => {
         if (this.flights.length === 0) {
           this.flights = flights
-          this.routing = flights
           console.log('flights updated')
         }
         else {
@@ -123,7 +133,6 @@ export const flightsmanagerservice = class {
               || this.flights[4].flightTime !== flights[4].flightTime
             ) {
             this.flights = flights
-            this.routing = flights
             console.log('flights updated')
           }
         }
