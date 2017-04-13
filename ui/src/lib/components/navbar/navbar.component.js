@@ -9,7 +9,11 @@ const controller = class {
   }
 
   goToHistory () {
-    this.$state.go('history')
+    if (this.userstatusservice.isLoggedIn) {
+      this.$state.go('history')
+    } else {
+      this.goToLogin()
+    }
   }
 
   goToFlights () {
