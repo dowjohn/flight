@@ -29,7 +29,7 @@ export const flightsmanagerservice = class {
     let direct = false
     let noPossible = true
     this.flights.forEach(flight => {
-      if (flight.destination.toLowerCase() === destination.toLowerCase()) {
+      if (flight.destination.toUpperCase() === destination.toUpperCase()) {
         noPossible = false
       }
       if (flight.origin === origin && flight.destination === destination) {

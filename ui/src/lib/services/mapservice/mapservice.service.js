@@ -10,4 +10,10 @@ export const mapservice = class {
       .get(`${this.apiUrl}/location/name`, { params: { name } })
       .then(result => result.data)
   }
+
+  getLocations () {
+    return this.$http
+    .get(`${this.apiUrl}/location`)
+    .then(result => result.data)
+  }
 }

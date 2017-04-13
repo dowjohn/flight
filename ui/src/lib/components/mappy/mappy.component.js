@@ -9,9 +9,7 @@ const controller = class {
 
   constructor (mapservice) {
     this.mapservice = mapservice
-
-    // add markers from an angular constant
-    const { memphis, nashville, knoxville } = {
+    const { memphis, nashville, knoxville, chattanooga } = {
       memphis: {
         latitude: 35.1495,
         longitude: -90.0490
@@ -25,25 +23,72 @@ const controller = class {
       knoxville: {
         latitude: 35.9606,
         longitude: -83.9207
+      },
+
+      chattanooga: {
+        latitude: 35.0457,
+        longitude: -85.3096
       }
     }
-    const markers = [memphis, nashville, knoxville]
 
-    markers.forEach(marker => this.addMarker(marker))
+    const citiesWithName = [
+      {
+        city: 'memphis',
+        latitude: 35.1495,
+        longitude: -90.0490
+      },
+      {
+        city: 'nashville',
+        latitude: 36.1627,
+        longitude: -86.7816
+      },
+      {
+        city: 'knoxville',
+        latitude: 35.9606,
+        longitude: -83.9207
+      },
+      {
+        city: 'chattanooga',
+        latitude: 35.0457,
+        longitude: -85.3096
+      },
+    ]
+
+    const innerMarkers = [memphis, nashville, knoxville, chattanooga]
+
+    innerMarkers.forEach(marker => this.addMarker(marker))
 
     // add paths manually
-    const paths = [
-      [memphis, nashville, '#CC0099'],
-      [nashville, knoxville, '#AA1100']
-    ]
+
+    const paths = this.makePaths(citiesWithName)
 
     paths.forEach(args => this.addPath(...args))
 
     // add path from webservice
-    mapservice.getMarkerByCityName('Chattanooga')
-      .then(chattanooga => {
-        this.addPath(knoxville, chattanooga, '#FF3388')
+    // mapservice.getMarkerByCityName('Chattanooga')
+    //   .then(chattanooga => {
+    //     this.addPath(knoxville, chattanooga, '#FF3388')
+    //   })
+  }
+
+  makePaths (citiesWithName) {
+    const colors = ['#1abc9c', '#e74c3c', '#2ecc71', '#f1c40f', '#2c3e50']
+    let paths = []
+    for (var i = 0; i < this.itinerary.length; i++) {
+      let route = []
+      let origin = this.itinerary[i].origin
+      let destination = this.itinerary[i].destination
+      citiesWithName.forEach((cityObj) => {
+        if (cityObj.city.toLowerCase() === origin.toLowerCase()) {
+          route.unshift(cityObj)
+        } else if (cityObj.city.toLowerCase() === destination.toLowerCase()) {
+          route.push(cityObj)
+        }
       })
+      route.push(colors[i])
+      paths.push(route)
+    }
+    return paths
   }
 
   addMarker ({ latitude, longitude }) {
@@ -67,5 +112,8 @@ const controller = class {
 export const mappy = {
   templateUrl,
   controller,
+  bindings: {
+    itinerary: '<'
+  },
   controllerAs: '$mappyCtrl'
 }
